@@ -1,27 +1,27 @@
-version: '3'
+version: '3.9'
 
 services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: my_blog_api
+      MYSQL_USER: rails
+      MYSQL_PASSWORD: rails_password
+
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: /bin/bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      - RAILS_ENV=development
     volumes:
       - .:/app
     ports:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      RAILS_DATABASE_URL: mysql2://rails:rails_password@db/rails_db
-  
-  db:
-    image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: rails_db
-      MYSQL_USER: rails
-      MYSQL_PASSWORD: rails_password
 
 volumes:
-  db_data:
+  db-data:
