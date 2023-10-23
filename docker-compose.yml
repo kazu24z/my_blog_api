@@ -3,6 +3,8 @@ version: '3.9'
 services:
   db:
     image: mysql:8.0
+    ports:
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
     environment:
@@ -17,7 +19,7 @@ services:
     environment:
       - RAILS_ENV=development
     volumes:
-      - .:/app
+      - .:/var/www/my_blog_api
     ports:
       - "3000:3000"
     depends_on:
