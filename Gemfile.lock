@@ -113,8 +113,14 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.1)
       i18n (>= 1.8.11, < 2)
+    ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphiql-rails (1.9.0)
+      railties
+      sprockets-rails
+    graphql (2.1.3)
+      racc (~> 1.4)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -277,6 +283,16 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (4.14.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -344,6 +360,8 @@ DEPENDENCIES
   debug
   factory_bot_rails
   faker
+  graphiql-rails
+  graphql
   importmap-rails
   jbuilder
   mysql2 (~> 0.5.5)
@@ -355,6 +373,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-lsp
+  sass-rails
   selenium-webdriver
   solargraph
   sprockets-rails

@@ -27,5 +27,7 @@ module App
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
