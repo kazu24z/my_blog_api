@@ -9,7 +9,7 @@ services:
       - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: my_blog_api
+      MYSQL_DATABASE: my_blog_api_dev
       MYSQL_USER: rails
       MYSQL_PASSWORD: rails_password
 
