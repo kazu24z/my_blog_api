@@ -15,18 +15,18 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: root_password
-  database: my_blog_api
   host: db
 
 development:
   <<: *default
+  database: my_blog_api_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: my_blog_api
+  database: my_blog_api_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: my_blog_api
+  database: my_blog_api_prod
   username: app
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>

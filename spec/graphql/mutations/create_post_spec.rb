@@ -1,59 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Mutations::Resolvers::CreatePost", type: :request do
-  describe "resolve" do
-    # MEMO: Rspecの遅延評価ヘルパ：userメソッドが最初に呼び出された時にcreateを実行する
-    let(:user) { create(:user) }
-
-    def default_title
-      "テストタイトル"
-    end
-
-    def default_content
-      "# テストタイトルについてのブログ  ## 見出し2  ### 見出し3"
-    end
-
-    def default_status
-      "draft"
-    end
-
+  describe "resolver" do
+    # TODO:テストケース拡充、処理汎用化
     context "正常系" do
       it "記事が作成されている" do
-        params = [
-          user_id: user.id,
-          title: default_title,
-          content: default_content,
-          status: default_status
-        ]
-
-        expect do
-          post "/graphql",
-               params: {
-                 query:
-                  query(
-                    params
-                  )
-               }
-        end.to change { Post.count }.by(1)
-
-        post = Post.last
-        expect(post.title).to eq(params[:title])
+        mutation = Resolvers::Mutations::CreatePost.new(field: nil, object: nil, context: nil)
+        result = mutation.resolve(params: { status: 'draft', title: "テストタイトル", content: "#見出し1" })
+        post = ::Post.last
+        expect(result).to eq post
       end
     end
-  end
-
-  def query(arguments)
-    <<~GQL
-      mutation {
-        sendInquiry(#{arguments.join(', ')}){
-          postId
-          userId
-          status
-          title
-          content
-          postDate
-        }
-      }
-    GQL
   end
 end

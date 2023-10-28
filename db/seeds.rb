@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# rolesテーブルにデータを追加
+role = Role.create!(
+  role_id: 1,
+  role_name: 'admin'
+)
+
+# usersテーブルにデータを追加
+User.create!(
+  user_name: 'admin_user',
+  email: 'test@example.com',
+  password: 'password',
+  role_id: role.role_id
+)
