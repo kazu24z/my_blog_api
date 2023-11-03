@@ -5,6 +5,6 @@ FactoryBot.define do
     password { "password" }
 
     # リレーションRole
-    role
+    # role
   end
 end

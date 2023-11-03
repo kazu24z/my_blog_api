@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_24_081549) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_03_064122) do
   create_table "posts", primary_key: "post_id", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "status", default: 0, null: false
@@ -32,10 +32,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_24_081549) do
     t.string "user_name"
     t.string "email"
     t.string "password"
-    t.integer "role_id", null: false
+    t.bigint "role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "fk_rails_642f17018b"
   end
 
   add_foreign_key "posts", "users", primary_key: "user_id"
+  add_foreign_key "users", "roles", primary_key: "role_id"
 end
