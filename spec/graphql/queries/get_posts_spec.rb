@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Resolvers::Queries::CreatePost", type: :request do
+RSpec.describe "Resolvers::Queries::GetPosts", type: :request do
   describe "resolver" do
     before do
       # Postsを3つ作成
