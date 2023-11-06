@@ -16,6 +16,9 @@ module App
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    # This App is API mode
+    config.api_only = true
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -28,6 +31,9 @@ module App
 
     config.generators do |g|
       g.test_framework :rspec
+      g.assets false
+      g.helper false
+      g.template_engine nil
     end
 
     config.middleware.use ActionDispatch::Session::CookieStore
