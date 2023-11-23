@@ -75,4 +75,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
   # display debug log API format
   config.debug_exception_response_format = :api
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 13000 }
 end
