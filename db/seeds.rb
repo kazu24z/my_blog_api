@@ -9,15 +9,20 @@
 #   end
 
 # rolesテーブルにデータを追加
-role = Role.create!(
-  role_id: 1,
-  role_name: 'admin'
-)
+unless Role.find_by(role_id: 1)
+  Role.create!(
+    role_id: 1,
+    role_name: 'admin'
+  )
+end
 
 # usersテーブルにデータを追加
-User.create!(
+user = User.create!(
   user_name: 'admin_user',
   email: 'test@example.com',
   password: 'password',
-  role_id: role.role_id
+  role_id: 1
 )
+
+# postsテーブルにデータを追加
+3.times { |n| Post.create(user_id: 1, status: 0, title: "テストタイトル#{n + 1}", content: '# 見出し ## 中項目 ### 小項目', post_date: Time.now) } if user.user_id == 1
