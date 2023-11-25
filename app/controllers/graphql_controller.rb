@@ -103,9 +103,11 @@ class GraphqlController < ApplicationController
   end
 
   def current_user
-    token = request.headers['Authorization'].split(" ")[1]
+    bearer_token = request.headers['Authorization']
 
-    raise InvalidTokenError, 'Token not present' unless token.present?
+    raise InvalidTokenError, 'Token not present' unless bearer_token.present?
+
+    token = bearer_token.split(" ")[1]
 
     begin
       # トークンをデコード
